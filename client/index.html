@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Checkout remember me with Twilio Verify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A demo of Stripe Billing" />
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="sr-root">
+      <div class="sr-main">
+        <header class="sr-header">
+          <a href="/"><h1>Buy with SMS verification</h1></a>
+          <h2 id="order-amount">Loading...</h2>
+        </header>
+        <div id="signup-view" class="sr-form">
+          <form id="signup-form">
+            <div class="sr-form-row">
+              <div class="sr-combo-inputs">
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="E-Mail"
+                  class="sr-input"
+                  required
+                />
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="Phone No."
+                  class="sr-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit">
+              <div class="spinner hidden"></div>
+              <span class="button-text">Sign up</span>
+            </button>
+          </form>
+        </div>
+        <div id="payment-view" class="sr-form hidden">
+          <form id="payment-form">
+            <p>Welcome back <span id="customer-email"></span>.</p>
+            <button type="submit">
+              <div class="spinner hidden"></div>
+              <span class="button-text">Pay</span>
+            </button>
+          </form>
+          <p>
+            <a id="forget-me" href="/">Forget me, please!</a>
+          </p>
+        </div>
+        <div id="verify-view" class="sr-form hidden">
+          <form id="verify-form">
+            <input
+              type="text"
+              id="verify-code"
+              placeholder="SMS code"
+              class="sr-input"
+              required
+            />
+            <div class="sr-field-error" role="alert"></div>
+            <button type="submit">
+              <div class="spinner hidden"></div>
+              <span class="button-text">Verify</span>
+            </button>
+          </form>
+        </div>
+        <div class="sr-result hidden">
+          <h3>Payment result:</h3>
+          <pre class="sr-callout"></pre>
+        </div>
+      </div>
+      <div class="sr-content">
+        <div class="pasha-image-stack">
+          <img
+            src="https://picsum.photos/280/320?random=1"
+            width="140"
+            height="160"
+          />
+          <img
+            src="https://picsum.photos/280/320?random=2"
+            width="140"
+            height="160"
+          />
+          <img
+            src="https://picsum.photos/280/320?random=3"
+            width="140"
+            height="160"
+          />
+          <img
+            src="https://picsum.photos/280/320?random=4"
+            width="140"
+            height="160"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
