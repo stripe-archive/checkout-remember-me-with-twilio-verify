@@ -24,7 +24,7 @@ const createPurchase = items => {
   return purchase;
 };
 
-app.use(express.static(process.env.STATIC_DIR));
+app.use(express.static("./client"));
 // Use JSON parser for all non-webhook routes.
 app.use((req, res, next) => {
   if (req.originalUrl === "/webhook") {
@@ -42,7 +42,7 @@ app.get("/config", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  const path = resolve(process.env.STATIC_DIR + "/index.html");
+  const path = resolve("./client/index.html");
   res.sendFile(path);
 });
 
