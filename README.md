@@ -16,6 +16,7 @@ See a [hosted version](https://ldmsw.sse.codesandbox.io/) of the sample or fork 
 
 ## Features:
 
+- ☎️ Validate phone number with [intl-tes-input](https://github.com/jackocnr/intl-tel-input) and [Twilio lookup](https://www.twilio.com/docs/lookup/tutorials/validation-and-formatting#format-an-international-phone-number)
 - 💳🔒Securely collect payment details with Stripe Checkout setup mode.
 - 📱✉️ Authenticate the customer with Twilio Verify and charge their stored card.
 

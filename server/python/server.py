@@ -61,9 +61,12 @@ def create_customer():
     data = json.loads(request.data)
 
     try:
+        # Validate the phone number input
+        lookup = client.lookups.phone_numbers(data['phone']).fetch() 
+
         # Create a new customer object
         customer = stripe.Customer.create(
-            phone=data['phone'],
+            phone=lookup.phone_number,
             email=data['email']
         )
 

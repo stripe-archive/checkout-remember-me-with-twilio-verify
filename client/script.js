@@ -22,17 +22,35 @@ fetch("/config")
     document.getElementById("order-amount").innerText = numberFormat.format(
       price
     );
+    // Format phone number input field
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      separateDialCode: true,
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.11/js/utils.js"
+    });
 
     // Handle signup form submission.
     signupForm.addEventListener("submit", async event => {
       event.preventDefault();
-      changeLoadingState(true, 0);
-      if (!signupForm.reportValidity()) {
-        // Form not valid, abort
+      if (!phoneInput.isValidNumber()) {
+        // Invlaid phone number, return error message, abort
+        phoneInputField.value = "";
+        phoneInputField.setCustomValidity("Invalid phone number!");
+        signupForm.reportValidity();
+        phoneInputField.setCustomValidity("");
         return;
       }
+      changeLoadingState(true, 0);
       // Create Customer
-      const { checkoutSession } = await createCustomer();
+      const { checkoutSession, error } = await createCustomer({
+        phone: phoneInput.getNumber()
+      });
+      if (error) {
+        alert(error.message);
+        changeLoadingState(false, 0);
+        return;
+      }
       // Recirect to Checkout
       await stripe.redirectToCheckout({ sessionId: checkoutSession.id });
     });
@@ -129,14 +147,14 @@ fetch("/config")
     }
   });
 
-async function createCustomer() {
+async function createCustomer({ phone }) {
   return await fetch("/create-customer", {
     method: "post",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      phone: document.querySelector("#phone").value,
+      phone,
       email: document.querySelector("#email").value
     })
   }).then(res => res.json());
