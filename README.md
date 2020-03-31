@@ -2,6 +2,10 @@
 
 This sample uses Stripe Checkout to [collect payment details](https://stripe.com/docs/payments/checkout/collecting) for future payments and uses [Twilio Verify](https://www.twilio.com/verify) to authenticate the customer via SMS code and [charge their stored card](https://stripe.com/docs/payments/save-and-reuse#web-create-payment-intent-off-session).
 
+## Demo
+
+See a [hosted version](https://ldmsw.sse.codesandbox.io/) of the sample or fork a copy on [CodeSandbox](https://codesandbox.io/s/github/stripe-samples/checkout-remember-me-with-twilio-verify/tree/codesandbox).
+
 <details open><summary>Set up the card with Stripe Checkout</summary>
 <img src="https://github.com/thorsten-stripe/demo-gifs/blob/master/twilio-verify-signup.gif?raw=true" alt="Checkout setup demo gif" align="center">
 </details>
@@ -12,6 +16,7 @@ This sample uses Stripe Checkout to [collect payment details](https://stripe.com
 
 ## Features:
 
+- ☎️ Validate phone number with [intl-tes-input](https://github.com/jackocnr/intl-tel-input) and [Twilio lookup](https://www.twilio.com/docs/lookup/tutorials/validation-and-formatting#format-an-international-phone-number)
 - 💳🔒Securely collect payment details with Stripe Checkout setup mode.
 - 📱✉️ Authenticate the customer with Twilio Verify and charge their stored card.
 

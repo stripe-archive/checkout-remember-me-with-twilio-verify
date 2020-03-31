@@ -48,22 +48,28 @@ app.get("/", (req, res) => {
 
 app.post("/create-customer", async (req, res) => {
   const { phone, email } = req.body;
-  // Create a new customer object
-  const customer = await stripe.customers.create({
-    phone,
-    email
-  });
+  try {
+    // Validate the phone number input
+    const number = await client.lookups.phoneNumbers(phone).fetch();
+    // Create a new customer object
+    const customer = await stripe.customers.create({
+      phone: number.phoneNumber,
+      email
+    });
 
-  // Create a CheckoutSession to set up our payment methods recurring usage
-  const checkoutSession = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    mode: "setup",
-    customer: customer.id,
-    success_url: `${req.headers.origin}?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${req.headers.origin}/`
-  });
+    // Create a CheckoutSession to set up our payment methods recurring usage
+    const checkoutSession = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "setup",
+      customer: customer.id,
+      success_url: `${req.headers.origin}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${req.headers.origin}/`
+    });
 
-  res.send({ customer, checkoutSession });
+    res.send({ customer, checkoutSession });
+  } catch (error) {
+    res.status(400).send({ error });
+  }
 });
 
 app.get("/checkout-session/:id", async (req, res) => {
@@ -150,10 +156,10 @@ app.post(
         req.headers["stripe-signature"],
         process.env.STRIPE_WEBHOOK_SECRET
       );
-    } catch (err) {
+    } catch (error) {
       // On error, log and return the error message
-      console.log(`❌ Error message: ${err.message}`);
-      return res.status(400).send(`Webhook Error: ${err.message}`);
+      console.log(`❌ Error message: ${error.message}`);
+      return res.status(400).send(`Webhook Error: ${error.message}`);
     }
 
     if (event.type === "payment_intent.succeeded") {
