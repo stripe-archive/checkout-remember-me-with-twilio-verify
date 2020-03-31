@@ -35,10 +35,11 @@ fetch("/config")
       event.preventDefault();
       if (!phoneInput.isValidNumber()) {
         // Invlaid phone number, return error message, abort
-        phoneInputField.value = "";
         phoneInputField.setCustomValidity("Invalid phone number!");
         signupForm.reportValidity();
-        phoneInputField.setCustomValidity("");
+        setTimeout(function() {
+          phoneInputField.setCustomValidity("");
+        }, 4000);
         return;
       }
       changeLoadingState(true, 0);
