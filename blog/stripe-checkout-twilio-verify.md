@@ -10,6 +10,8 @@ Stripe and Twilio have teamed up to build a sample application that shows you ho
 
 If you prefer to watch this tutorial, you can find a recording of how to set up the sample application on the Stripe Developers YouTube channel:
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/gjh5gOalYcM/0.jpg)](https://www.youtube.com/watch?v=gjh5gOalYcM)
+
 ## Running the sample on your local machine
 
 The sample application comes with two backend implementations one in JavaScript (Node) and one in Python (Flask). In this tutorial we outline how to set up the Node.js backend. You can find instructions for running the Python Flask server [here](https://github.com/stripe-samples/checkout-remember-me-with-twilio-verify/blob/master/server/python).
