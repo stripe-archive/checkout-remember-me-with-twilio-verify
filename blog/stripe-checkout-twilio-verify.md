@@ -1,6 +1,6 @@
 # Authenticating your returning customers with Twilio Verify
 
-Stripe and Twilio have teamed up to build a sample application that shows you how to securely collect and store payment details from your customers, and use Twilio Verify to send returning customers an authentication code before charging their saved card details.
+Stripe and Twilio have teamed up to build a sample application that shows you how to securely collect and store payment details from your customers and use Twilio Verify to send returning customers an authentication code before charging their saved card details.
 
 ## Demo and resources
 
@@ -10,7 +10,7 @@ Stripe and Twilio have teamed up to build a sample application that shows you ho
 
 If you prefer to watch this tutorial, you can find a recording of how to set up the sample application on the Stripe Developers YouTube channel:
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/gjh5gOalYcM/0.jpg)](https://www.youtube.com/watch?v=gjh5gOalYcM)
+[![Youtube video recording of a code walkthrough](https://img.youtube.com/vi/gjh5gOalYcM/0.jpg)](https://www.youtube.com/watch?v=gjh5gOalYcM)
 
 ## Running the sample on your local machine
 
@@ -36,7 +36,7 @@ stripe samples create checkout-remember-me-with-twilio-verify
 
 ![Screenshot of options](./images/cli-samples-create.png)
 
-Next, navigate into the newly created smaple folder and install the dependencies:
+Next, navigate into the newly created sample folder and install the dependencies:
 
 ```bash
 cd checkout-remember-me-with-twilio-verify/server
@@ -55,7 +55,7 @@ The Stripe CLI has automatically set up a `.env` file for you, including your te
 | `AUTH_TOKEN`         | Find in the Twilio [console](https://www.twilio.com/console)              |
 | `VERIFY_SERVICE_SID` | Create a [Verify Service](https://www.twilio.com/console/verify/services) |
 
-You will need to create a new Twilio Verify service on the [Twilio Console](https://www.twilio.com/console/verify/services).
+Create a Twilio account if you don't have one. [If you use this link you'll get $10 when you upgrade](www.twilio.com/referral/RwgT7T). You will need to create a new Twilio Verify service on the [Twilio Console](https://www.twilio.com/console/verify/services).
 
 ![Twilio console screenshot](./images/create-verify-service.png)
 
@@ -146,15 +146,15 @@ Stripe Checkout will validate the inputted card details and attach them to the c
 
 ### Send the verification code
 
-When charging stored payment details we need to make sure that our customer is authenticated and therefore allowed to charge their card. In this example we're using [Twilio Verify]() to send them a verification code to their phone number to authenticate them.
+When charging stored payment details we need to make sure that our customer is authenticated and therefore allowed to charge their card. In this example we're using [Twilio Verify](https://www.twilio.com/docs/verify/api) to send them a verification code to their phone number to authenticate them.
 
 Twilio Verify does all of the heavy lifting here for us, namely:
 
-- Send from a globally recognised short code
-- Use a message template that is white-listed by carriers globally
+- Send from a globally recognised [short code](https://www.twilio.com/docs/glossary/what-is-a-short-code) or [alpha sender ID](https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id)
+- Use a message template that is white-listed by carriers globally for better deliverability
 - Generate a random verification code and manage its expiry
 
-This snippets generates and send the code to our customer:
+This snippet generates and sends the code to our customer:
 
 ```js
 // server/server.js
