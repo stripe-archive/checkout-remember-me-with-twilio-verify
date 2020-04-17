@@ -6,7 +6,7 @@ Stripe and Twilio have teamed up to build a sample application that shows you ho
 
 - [View the demo](https://ldmsw.sse.codesandbox.io/)
 - [Fork the demo on CodeSandbox](https://codesandbox.io/s/github/stripe-samples/checkout-remember-me-with-twilio-verify/tree/codesandbox)
-- View the sample on the [Twilio CodeExchange]()
+- View the sample on the [Twilio CodeExchange](https://www.twilio.com/code-exchange/fast-checkout-sms-verification)
 
 If you prefer to watch this tutorial, you can find a recording of how to set up the sample application on the Stripe Developers YouTube channel:
 
