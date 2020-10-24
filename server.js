@@ -17,7 +17,7 @@ const purchase = {
   currency: "USD"
 };
 
-const createPurchase = items => {
+const createPurchase = (items) => {
   // Extend this function with your logic to validate
   // the purchase details server-side and prevent
   // manipulation of price details on the client.
