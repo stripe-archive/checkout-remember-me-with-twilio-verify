@@ -1,3 +1,7 @@
+> <img src="https://stripe.dev/images/badges/archived.png" width="250">
+>
+> This project is deprecated and is no longer being actively maintained.
+
 # Checkout remember me with Twilio Verify
 
 This sample uses Stripe Checkout to [collect payment details](https://stripe.com/docs/payments/checkout/collecting) for future payments and uses [Twilio Verify](https://www.twilio.com/verify) to authenticate the customer via SMS code and [charge their stored card](https://stripe.com/docs/payments/save-and-reuse#web-create-payment-intent-off-session).
